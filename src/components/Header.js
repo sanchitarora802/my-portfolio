@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
-import styled from "styled-components";
+import styled, { useTheme } from "styled-components";
+import { ContactButton, StylledButton } from "./Button";
 
 const HeaderWrapper = styled.header`
   position: fixed;
@@ -10,8 +11,7 @@ const HeaderWrapper = styled.header`
   z-index: 20;
   background: transparent;
   backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(75, 85, 99, 0.4);
+  /* border-bottom: ${({ borderBottom }) => borderBottom}; */
 `;
 
 const NavContainer = styled.nav`
@@ -30,28 +30,26 @@ const Logo = styled.a`
   text-decoration: none;
 `;
 
-const ContactButton = styled.a`
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 1);
-  color: #ffffff;
-  padding: 0.5rem 1rem;
-  border-radius: 9999px;
-  font-size: 0.875rem;
-  font-weight: 500;
-  transition: background-color 0.2s ease-in-out;
-  text-decoration: none;
-
-  &:hover {
-    background: rgba(255, 255, 255, 0.2);
-  }
-`;
-
 const Header = () => {
+  const theme = useTheme();
   return (
     <HeaderWrapper>
       <NavContainer>
         <Logo href="#">Your Name</Logo>
-        <ContactButton href="#">Contact</ContactButton>
+        <StylledButton
+          bgColor={theme.colors.border.lightBorder}
+          border={`1px solid ${theme.colors.border.lightBorder}`}
+          color={theme.colors.white.default}
+          padding={"0.5rem 1rem"}
+          borderRadius={"9999px"}
+          fontSize={"0.875rem"}
+          fontWeight={500}
+          transition={"background-color 0.2s ease-in-out"}
+          textDecoration={"none"}
+          hoverBackground={theme.colors.hover}
+        >
+          Contact
+        </StylledButton>
       </NavContainer>
     </HeaderWrapper>
   );

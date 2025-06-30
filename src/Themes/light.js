@@ -1,0 +1,34 @@
+const lightTheme = {
+  colors: {
+    background: {
+      mainBackground: "#111827",
+      pillBg: "rgba(55, 65, 81, 0.5)",
+    },
+    text: {
+      textGray: "#9CA3AF",
+      textCyan: "#67E8F9",
+    },
+
+    // textPrimary: "#FFFFFF",
+    // textSecondary: "#D1D5DB", // gray-300
+
+    fonts: {
+      main: "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
+    },
+    white: {
+      default: "#FFFFFF",
+    },
+    border: {
+      lightBorder: "rgba(255, 255, 255, 0.1)",
+      light: "#F0F0F0",
+      PillBorder: "rgba(75, 85, 99, 0.8)",
+    },
+    hover: "rgba(255, 255, 255, 0.2)",
+  },
+
+  transitions: {
+    sidebarSwitch: "all 0.3s ease-in-out",
+  },
+};
+
+export default lightTheme;
