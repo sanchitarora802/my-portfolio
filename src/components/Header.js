@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import styled, { useTheme } from "styled-components";
-import { ContactButton, StylledButton } from "./Button";
+import { StyledButton } from "./StyledButton";
 
 const HeaderWrapper = styled.header`
   position: fixed;
@@ -36,7 +36,7 @@ const Header = () => {
     <HeaderWrapper>
       <NavContainer>
         <Logo href="#">Your Name</Logo>
-        <StylledButton
+        <StyledButton
           bgColor={theme.colors.border.lightBorder}
           border={`1px solid ${theme.colors.border.lightBorder}`}
           color={theme.colors.white.default}
@@ -49,7 +49,7 @@ const Header = () => {
           hoverBackground={theme.colors.hover}
         >
           Contact
-        </StylledButton>
+        </StyledButton>
       </NavContainer>
     </HeaderWrapper>
   );

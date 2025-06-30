@@ -5,12 +5,10 @@ const lightTheme = {
       pillBg: "rgba(55, 65, 81, 0.5)",
     },
     text: {
-      textGray: "#9CA3AF",
+      textGrayDark: "#9CA3AF",
+      textGrayLigh: "#D1D5DB",
       textCyan: "#67E8F9",
     },
-
-    // textPrimary: "#FFFFFF",
-    // textSecondary: "#D1D5DB", // gray-300
 
     fonts: {
       main: "Inter, -apple-system, BlinkMacSystemFont, sans-serif",

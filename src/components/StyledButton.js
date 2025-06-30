@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StylledButton = styled.a`
+export const StyledButton = styled.a`
   background: ${({ bgColor }) => bgColor};
   border: ${({ border }) => border};
   color: ${({ color }) => color};
