@@ -1,13 +1,11 @@
-"use client"; // This component uses styled-components, which is a client-side library.
-
 import React from "react";
 import { useTheme } from "styled-components";
 import { Github, Linkedin, Twitter, Mail } from "lucide-react";
-import { CardWrapper } from "./cardWrapper";
 import StyledImage from "./StyledImage";
 import StyledText from "./StyledText";
 import StyledDiv from "./StyledDiv";
 import StyledPill from "./StyledPill";
+import CardWrapper from "./cardWrapper";
 
 const PortfolioCard = () => {
   const theme = useTheme();

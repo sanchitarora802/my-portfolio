@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const CardWrapper = styled.main`
+const CardWrapper = styled.main`
   background: ${(props) => props.background};
   backdrop-filter: blur(16px) saturate(180%);
   border: 1px solid ${(props) => props.border};
@@ -12,3 +12,5 @@ export const CardWrapper = styled.main`
   color: ${(props) => props.color};
   z-index: ${(props) => props.zIndex};
 `;
+
+export default CardWrapper;
