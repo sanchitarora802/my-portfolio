@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useRef } from "react";
-import styled from "styled-components";
+import styled, { useTheme } from "styled-components";
+import { FloatingElement } from "./FloatingElement";
 
 const BackgroundWrapper = styled.div`
   position: fixed;
@@ -12,16 +13,9 @@ const BackgroundWrapper = styled.div`
   transition: background 0.4s ease-out;
 `;
 
-const FloatingElement = styled.div`
-  position: absolute;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 50%;
-  animation: floatUpDown 6s ease-in-out infinite;
-  z-index: 1;
-`;
-
 const Background = () => {
   const backgroundRef = useRef(null);
+  const theme = useTheme();
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -51,34 +45,31 @@ const Background = () => {
   return (
     <BackgroundWrapper ref={backgroundRef}>
       <FloatingElement
-        style={{
-          width: "150px",
-          height: "150px",
-          top: "10%",
-          left: "15%",
-          animationDelay: "0s",
-          animationDuration: "9s",
-        }}
+        bgColor={theme.colors.border.normal}
+        width="150px"
+        height="150px"
+        top="10%"
+        left="15%"
+        animationDelay="0s"
+        animationDuration="9s"
       />
       <FloatingElement
-        style={{
-          width: "100px",
-          height: "100px",
-          top: "80%",
-          left: "30%",
-          animationDelay: "2s",
-          animationDuration: "7s",
-        }}
+        bgColor={theme.colors.border.normal}
+        width="100px"
+        height="100px"
+        top="80%"
+        left="30%"
+        animationDelay="2s"
+        animationDuration="7s"
       />
       <FloatingElement
-        style={{
-          width: "120px",
-          height: "120px",
-          top: "75%",
-          right: "15%",
-          animationDelay: "1s",
-          animationDuration: "8s",
-        }}
+        bgColor={theme.colors.border.normal}
+        width="120px"
+        height="120px"
+        top="75%"
+        right="15%"
+        animationDelay="1s"
+        animationDuration="8s"
       />
     </BackgroundWrapper>
   );
