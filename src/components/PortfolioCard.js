@@ -5,7 +5,7 @@ import StyledImage from "./StyledImage";
 import StyledText from "./StyledText";
 import StyledDiv from "./StyledDiv";
 import StyledPill from "./StyledPill";
-import CardWrapper from "./cardWrapper";
+import CardWrapper from "./CardWrapper";
 
 const PortfolioCard = () => {
   const theme = useTheme();
