@@ -102,16 +102,13 @@ const Experience = () => {
         {experiences?.map((child, index) => {
           return (
             <StyledDiv
+              key={child?.date}
               $justifyContent={index % 2 !== 0 ? "flex-start" : "flex-end"}
               $display={"flex"}
               $flexDirection={"row"}
               $width={"100%"}
             >
-              <ExperienceItem
-                key={child?.date}
-                experienceData={child}
-                index={index}
-              />
+              <ExperienceItem experienceData={child} index={index} />
             </StyledDiv>
           );
         })}
@@ -202,6 +199,7 @@ const ExperienceItem = ({ experienceData, index }) => {
                   $display={"flex"}
                   $gap={"10px"}
                   $width={"100%"}
+                  key={child.text}
                 >
                   <StyledDiv
                     $width={"5px"}
@@ -209,7 +207,7 @@ const ExperienceItem = ({ experienceData, index }) => {
                     $background={theme.colors.white.default}
                     $borderRadius={"50%"}
                   />
-                  <StylledLi key={child.text}>{child?.text}</StylledLi>
+                  <StylledLi>{child?.text}</StylledLi>
                 </StyledDiv>
               );
             })}
