@@ -1,7 +1,7 @@
 const lightTheme = {
   colors: {
     background: {
-      mainBackground: "#111827",
+      mainBackground: "#1f2c47",
       pillBg: "rgba(55, 65, 81, 0.5)",
     },
     text: {
