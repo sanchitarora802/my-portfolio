@@ -5,10 +5,12 @@ const StyledDiv = styled.div`
   flex-direction: ${(props) => props.$flexDirection};
   justify-content: ${(props) => props.$justifyContent};
   flex-wrap: ${(props) => props.$flexWrap};
+  color: ${(props) => props.$color};
   align-items: ${(props) => props.$alignItems};
   gap: ${(props) => props.$gap};
   width: ${(props) => props.$width};
   height: ${(props) => props.$height};
+  min-height: ${(props) => props.$minHeight};
   max-width: ${(props) => props.$maxWidth};
   min-width: ${(props) => props.$minWidth};
   padding: ${(props) => props.$padding};
@@ -26,6 +28,10 @@ const StyledDiv = styled.div`
   z-index: ${(props) => props.$zIndex};
   overflow: ${(props) => props.$overflow};
   scroll-snap-align: ${(props) => props.$scrollSnapAlign};
+
+  &:hover {
+    border: ${(props) => props.$hoverBorder};
+  }
 `;
 
 export default StyledDiv;

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const StyledPill = styled.span`
   background-color: ${(props) =>
-    props.$backgroundColor || props.theme.colors.skillPillBg};
+    props.$backgroundColor || props.theme.colors.pillBg};
   color: ${(props) => props.$color || props.theme.colors.textGrayLigh};
   font-size: ${(props) => props.$fontSize || "0.875rem"};
   font-weight: ${(props) => props.$fontWeight || 500};
