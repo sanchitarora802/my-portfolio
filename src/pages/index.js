@@ -5,6 +5,12 @@ import PortfolioCard from "@components/PortfolioCard";
 import ContactForm from "@components/ContactForm";
 import StyledDiv from "@components/StyledDiv";
 
+// const ScrollContainer = styled.div`
+//   height: 100vh;
+//   overflow-y: scroll;
+//   scroll-snap-type: y mandatory
+// `;
+
 export default function HomePage() {
   return (
     <div>
@@ -13,17 +19,31 @@ export default function HomePage() {
         <Header />
       </StyledDiv>
 
+      {/* <ScrollContainer> */}
       <StyledDiv
-        $height={"75%"}
+        $height={"98vh"}
+        $width={"98.5vw"}
         $padding={"1rem"}
         $display={"flex"}
         $justifyContent={"center"}
-        $flexDirection={"column"}
-        $alignItems="center"
+        $alignItems={"center"}
+        $position={"relative"}
+        $scrollSnapAllign={"start"}
       >
         <PortfolioCard />
-        <ContactForm />
       </StyledDiv>
+
+      {/* <StyledDiv
+        $padding={"1rem"}
+        $display={"flex"}
+        $justifyContent={"center"}
+        $alignItems={"center"}
+        $position={"relative"}
+        $scrollSnapAllign={"start"}
+      >
+        <ContactForm />
+      </StyledDiv> */}
+      {/* </ScrollContainer> */}
     </div>
   );
 }

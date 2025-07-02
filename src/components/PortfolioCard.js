@@ -1,6 +1,6 @@
 import React from "react";
 import { useTheme } from "styled-components";
-import { Github, Linkedin, Twitter, Mail } from "lucide-react";
+import { Github, Linkedin, Twitter, Mail, Facebook } from "lucide-react";
 import StyledImage from "./StyledImage";
 import StyledText from "./StyledText";
 import StyledDiv from "./StyledDiv";
@@ -23,7 +23,7 @@ const PortfolioCard = () => {
   const socialLinks = [
     { name: "GitHub", icon: <Github />, url: "#" },
     { name: "LinkedIn", icon: <Linkedin />, url: "#" },
-    { name: "Twitter", icon: <Twitter />, url: "#" },
+    { name: "Facebook", icon: <Facebook />, url: "#" },
     { name: "Email", icon: <Mail />, url: "#" },
   ];
 

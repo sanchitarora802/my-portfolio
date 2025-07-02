@@ -25,6 +25,7 @@ const StyledDiv = styled.div`
   bottom: ${(props) => props.$bottom};
   z-index: ${(props) => props.$zIndex};
   overflow: ${(props) => props.$overflow};
+  scroll-snap-align: ${(props) => props.$scrollSnapAlign};
 `;
 
 export default StyledDiv;

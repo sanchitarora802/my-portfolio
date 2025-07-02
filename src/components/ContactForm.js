@@ -58,7 +58,7 @@ const ContactForm = () => {
         </StyledText>
 
         <StyledText $color={theme.colors.white.default}>
-          I'm always open to discussing new projects.
+          {`I'm always open to discussing new projects`}
         </StyledText>
       </StyledDiv>
 
