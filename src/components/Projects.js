@@ -50,7 +50,9 @@ const Projects = () => {
         $alignItems={"center"}
       >
         {projects?.map((child, index) => {
-          return <ProjectItem projectData={child} index={index} />;
+          return (
+            <ProjectItem key={index + 1} projectData={child} index={index} />
+          );
         })}
       </StyledDiv>
     </StyledDiv>
