@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 const StyledButton = styled.a`
+  display: flex;
+  align-items: center;
   background: ${({ $bgColor }) => $bgColor};
   border: ${({ $border }) => $border};
   color: ${({ $color }) => $color};
