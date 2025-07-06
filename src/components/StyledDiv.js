@@ -16,6 +16,7 @@ const StyledDiv = styled.div`
   padding: ${(props) => props.$padding};
   margin: ${(props) => props.$margin};
   background: ${(props) => props.$background};
+  background-image: ${(props) => props.$backgroundImage};
   border: ${(props) => props.$border};
   border-radius: ${(props) => props.$borderRadius};
   box-shadow: ${(props) => props.$boxShadow};
@@ -28,6 +29,8 @@ const StyledDiv = styled.div`
   z-index: ${(props) => props.$zIndex};
   overflow: ${(props) => props.$overflow};
   scroll-snap-align: ${(props) => props.$scrollSnapAlign};
+  backdrop-filter: ${(props) => props.$backdropFilter};
+  opacity: ${(props) => props.$opacity || 1};
 
   &:hover {
     border: ${(props) => props.$hoverBorder};

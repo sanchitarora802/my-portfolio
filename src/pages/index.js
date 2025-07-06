@@ -5,6 +5,7 @@ import PortfolioCard from "@components/PortfolioCard";
 import ContactForm from "@components/ContactForm";
 import StyledDiv from "@components/StyledDiv";
 import Experience from "@components/Experience";
+import Projects from "@components/Projects";
 
 // const ScrollContainer = styled.div`
 //   height: 100vh;
@@ -44,6 +45,17 @@ export default function HomePage() {
       >
         <Experience />
         {/* <ContactForm /> */}
+      </StyledDiv>
+
+      <StyledDiv
+        $padding={"1rem"}
+        $display={"flex"}
+        $justifyContent={"center"}
+        $alignItems={"center"}
+        $position={"relative"}
+        $scrollSnapAllign={"start"}
+      >
+        <Projects />
       </StyledDiv>
       {/* </ScrollContainer> */}
     </div>

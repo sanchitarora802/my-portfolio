@@ -3,6 +3,7 @@ import StyledDiv from "./StyledDiv";
 import StyledText from "./StyledText";
 import styled, { useTheme } from "styled-components";
 import StyledPill from "./StyledPill";
+import { experiences } from "../constants/Experience";
 
 const StylledLi = styled.li`
   display: flex;
@@ -27,51 +28,6 @@ const StyledUl = styled.ul`
 const Experience = () => {
   const theme = useTheme();
 
-  const experiences = [
-    {
-      date: "7 Jan 2012",
-      companyName: "Innovate Inc.",
-      role: "Lead Frontend Developer",
-      bulletPoints: [
-        {
-          text: "Spearheaded the development of a new design system, improving component consistency and reducing development time by 30%.",
-        },
-        {
-          text: "Mentored a team of four junior developers, fostering a culture of collaboration and continuous learning.",
-        },
-      ],
-      skills: ["React", "Next.js"],
-    },
-    {
-      date: "9 March 2012",
-      companyName: "Innovate Inc.",
-      role: "Lead Frontend Developer",
-      bulletPoints: [
-        {
-          text: "Spearheaded the development of a new design system, improving component consistency and reducing development time by 30%.",
-        },
-        {
-          text: "Mentored a team of four junior developers, fostering a culture of collaboration and continuous learning.",
-        },
-        {
-          text: "Mentored Mentored a team of four junior developers, fostering a culture of collaboration and continuous learning.",
-        },
-      ],
-      skills: ["React", "Next.js"],
-    },
-    {
-      date: "120 March 2012",
-      companyName: "Innovate Inc.",
-      role: "Lead Frontend Developer",
-      bulletPoints: [
-        {
-          text: "Spearheaded the development of a new design system, improving component consistency and reducing development time by 30%.",
-        },
-      ],
-      skills: ["React", "Next.js"],
-    },
-  ];
-
   return (
     <StyledDiv
       $color={theme.colors.white.default}
@@ -80,7 +36,6 @@ const Experience = () => {
       $padding="2rem"
       $textAlign="center"
       $zIndex={10}
-      $backdropFilter="blur(16px) saturate(180%)"
     >
       <StyledDiv
         $display={"flex"}
