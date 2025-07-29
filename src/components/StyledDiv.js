@@ -19,6 +19,7 @@ const StyledDiv = styled.div`
   background: ${(props) => props.$background};
   background-image: ${(props) => props.$backgroundImage};
   border: ${(props) => props.$border};
+  border-bottom: ${(props) => props.$borderBottom};
   border-radius: ${(props) => props.$borderRadius};
   box-shadow: ${(props) => props.$boxShadow};
   text-align: ${(props) => props.$textAlign};

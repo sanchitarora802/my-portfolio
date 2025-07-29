@@ -20,6 +20,7 @@ import { useTheme } from "styled-components";
 export default function HomePage() {
   const [showForm, setShowForm] = useState(false);
   const theme = useTheme();
+
   return (
     <div>
       <Head>
@@ -28,26 +29,24 @@ export default function HomePage() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Background />
-      <StyledDiv $position={"relative"} $padding={"1rem"} $height={"25%"}>
-        <Header
-          onClick={() => {
-            if (!showForm) setShowForm(true);
-          }}
-        />
-        {showForm && (
-          <ClickAwayListener onClickAway={() => setShowForm(false)}>
-            <StyledDiv
-              $position={"absolute"}
-              $zIndex={9999}
-              $top={"90%"}
-              $left={"55%"}
-              $minWidth={"40%"}
-            >
-              <ContactForm />
-            </StyledDiv>
-          </ClickAwayListener>
-        )}
-      </StyledDiv>
+      <Header
+        onClick={() => {
+          if (!showForm) setShowForm(true);
+        }}
+      />
+      {showForm && (
+        <ClickAwayListener onClickAway={() => setShowForm(false)}>
+          <StyledDiv
+            $position={"absolute"}
+            $zIndex={9999}
+            $top={"90%"}
+            $left={"55%"}
+            $minWidth={"40%"}
+          >
+            <ContactForm />
+          </StyledDiv>
+        </ClickAwayListener>
+      )}
       {/* <ScrollContainer> */}
       <StyledDiv
         $height={"98vh"}
