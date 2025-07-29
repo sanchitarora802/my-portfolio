@@ -1,8 +1,9 @@
 const lightTheme = {
   colors: {
     background: {
-      mainBackground: "#111827",
+      mainBackground: "#1f2c47",
       pillBg: "rgba(55, 65, 81, 0.5)",
+      overlay: "rgba(255, 255, 255, 0.05)",
     },
     text: {
       textGrayDark: "#9CA3AF",
