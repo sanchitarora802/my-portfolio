@@ -1,122 +1,447 @@
 "use client";
-import React from "react";
-import { Mail, Send } from "lucide-react";
-import styled, { useTheme } from "styled-components";
-
+import React, { useEffect, useState } from "react";
+import { ArrowRight, RotateCcw } from "lucide-react";
+import { useTheme } from "styled-components";
 import StyledDiv from "./StyledDiv";
 import StyledText from "./StyledText";
 import StyledButton from "./StyledButton";
 import StyledInput from "./StyledInput";
+import { StyledTextArea } from "./StyledTextArea";
+import { Line } from "@rc-component/progress";
 
-const StyledTextArea = styled.textarea`
-  width: 100%;
-  min-height: 100px;
-  background: ${(props) => props.theme.colors.background.pillBg};
-  border: 1px solid ${(props) => props.theme.colors.border.PillBorder};
-  border-radius: 0.5rem;
-  padding: 0.75rem 1rem;
-  color: ${(props) => props.theme.colors.white.default};
-  resize: vertical;
-  outline: none;
-  font-family: inherit;
-  font-size: 1rem;
-  transition: border-color 0.2s;
-
-  &:focus {
-    border-color: ${(props) => props.theme.colors.text.textCyan};
-  }
-`;
-
-const ContactForm = () => {
+const ContactForm = ({}) => {
   const theme = useTheme();
+  const [progressDetails, setProgressDetails] = useState({
+    step: 1,
+    progress: 25,
+  });
+  const [contactDetails, setContactDetails] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
 
   return (
     <StyledDiv
-      $background={theme.colors.background.mainBackground}
+      $background={"#ADD0F7"}
       $border={`1px solid ${theme.colors.border.normal}`}
       $borderRadius="1rem"
       $padding={"2rem"}
-      $margin={"2rem"}
-      $minWidth={"60%"}
+      $minWidth={"50%"}
       $textAlign="center"
-      $zIndex={10}
     >
       <StyledDiv
-        $padding={"1rem"}
         $display={"flex"}
-        $justifyContent={"center"}
-        $flexDirection={"column"}
-        $alignItems="center"
-        $gap={"20px"}
+        $justifyContent={progressDetails?.step === 4 ? "center" : "flex-end"}
+        $maxHeight={progressDetails?.step === 4 ? "160px" : "80px"}
+        $width={"100%"}
       >
-        <StyledText
-          $color={theme.colors.white.default}
-          $fontSize="1.875rem"
-          $fontWeight="700"
-        >
-          Get In Touch
-        </StyledText>
-
-        <StyledText $color={theme.colors.white.default}>
-          {`I'm always open to discussing new projects`}
-        </StyledText>
+        <Line
+          percent={progressDetails.progress}
+          strokeWidth={1}
+          strokeColor="#000000"
+        />
       </StyledDiv>
 
-      <form onSubmit={(e) => e.preventDefault()}>
-        <StyledDiv $margin="0 0 1.5rem 0">
-          {/* Assuming StyledInput is your enhanced component that accepts these props */}
-          <StyledInput label="Your Name" id="name" placeholder="John Doe" />
-        </StyledDiv>
-
-        <StyledDiv $margin="0 0 1.5rem 0">
-          <StyledInput
-            label="Your Email"
-            id="email"
-            placeholder="you@example.com"
-            rightElement={<Mail size={18} />}
-          />
-        </StyledDiv>
-
-        <StyledDiv $margin="0 0 1.5rem 0">
-          <StyledText
-            as="label"
-            htmlFor="message"
-            $display="block"
-            $margin="0 0 0.5rem 0"
-            $fontSize="0.875rem"
-            $fontWeight="500"
-            $textAlign="left"
-            $color={theme.colors.text.textGrayLight}
+      {progressDetails.step === 1 && (
+        <Step1
+          setProgressDetails={setProgressDetails}
+          setContactDetails={setContactDetails}
+          contactDetails={contactDetails}
+        />
+      )}
+      {progressDetails.step === 2 && (
+        <Step2
+          setProgressDetails={setProgressDetails}
+          setContactDetails={setContactDetails}
+          contactDetails={contactDetails}
+        />
+      )}
+      {progressDetails.step === 3 && (
+        <Step3
+          setProgressDetails={setProgressDetails}
+          setContactDetails={setContactDetails}
+          contactDetails={contactDetails}
+        />
+      )}
+      {progressDetails.step === 4 && (
+        <>
+          <StyledDiv
+            $display={"flex"}
+            $flexDirection={"column"}
+            $gap={"10px"}
+            $padding={"2rem 0rem 0.3rem 0rem"}
+            $alignItems={"center"}
           >
-            Message
-          </StyledText>
-          <StyledTextArea id="message" placeholder="Your message..." />
-        </StyledDiv>
-
-        <StyledButton
-          as="button"
-          type="submit"
-          $bgColor={theme.colors.hover}
-          $border={`1px solid ${theme.colors.white.default}`}
-          $color={theme.colors.white.default}
-          $padding="0.75rem"
-          $borderRadius="9999px"
-          $fontWeight="600"
-          $hoverBackground="rgba(255, 255, 255, 0.3)"
-          style={{
-            width: "100%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: "0.5rem",
-          }}
-        >
-          <Send size={18} />
-          <span>Send Message</span>
-        </StyledButton>
-      </form>
+            <StyledText
+              as="label"
+              $display="block"
+              $fontSize="2rem"
+              $fontWeight="600"
+              $color={theme.colors.text.textBlack}
+            >
+              Thank you!
+            </StyledText>
+            <StyledText
+              as="label"
+              $display="block"
+              $margin="0 0 0.5rem 0"
+              $fontSize="1rem"
+              $fontWeight="500"
+              $color={theme.colors.text.textGrayLight}
+            >
+              Your message has been sent. I will be in touch soon
+            </StyledText>
+            <RotateCcw
+              cursor={"pointer"}
+              onClick={() => {
+                setContactDetails((prevState) => {
+                  return {
+                    ...prevState,
+                    name: "",
+                    email: "",
+                    message: "",
+                  };
+                });
+                setProgressDetails((prevState) => {
+                  return {
+                    ...prevState,
+                    step: 1,
+                    progress: 25,
+                  };
+                });
+              }}
+            />
+          </StyledDiv>
+        </>
+      )}
     </StyledDiv>
   );
 };
 
 export default ContactForm;
+
+const Step1 = ({ setProgressDetails, setContactDetails, contactDetails }) => {
+  const theme = useTheme();
+  return (
+    <StyledDiv
+      $padding={"1rem"}
+      $display={"flex"}
+      $flexDirection={"column"}
+      $gap={"20px"}
+    >
+      <StyledDiv $display={"flex"} $flexDirection={"column"} $gap={"10px"}>
+        <StyledText
+          as="label"
+          htmlFor="message"
+          $display="block"
+          $fontSize="1.6rem"
+          $fontWeight="600"
+          $color={theme.colors.text.textBlack}
+        >
+          Let's start with your name.
+        </StyledText>
+        <StyledText
+          as="label"
+          htmlFor="message"
+          $display="block"
+          $margin="0 0 0.5rem 0"
+          $fontSize="0.875rem"
+          $fontWeight="500"
+          $color={theme.colors.text.textGrayLight}
+        >
+          It's great to meet you!!
+        </StyledText>
+      </StyledDiv>
+      <StyledInput
+        $inputColor={theme.colors.text.textBlack}
+        $inputBackground={theme.colors.white.default}
+        width={"100%"}
+        id="name"
+        placeholder="Jane Doe"
+        value={contactDetails?.name}
+        onChange={(e) => {
+          const { value } = e.target;
+          setContactDetails((prevState) => {
+            return {
+              ...prevState,
+              name: value,
+            };
+          });
+        }}
+      />
+      <StyledDiv $maxWidth={"50%"}>
+        <StyledButton
+          as="button"
+          type="submit"
+          $bgColor={theme.colors.background.mainBackground}
+          $border={`1px solid ${theme.colors.white.default}`}
+          $color={theme.colors.white.default}
+          $padding="0.5rem 1rem"
+          $borderRadius="10px"
+          $fontWeight="600"
+          $fontSize="1rem"
+          onClick={() => {
+            setProgressDetails((prevState) => {
+              return {
+                ...prevState,
+                step: 2,
+                progress: 50,
+              };
+            });
+          }}
+          disabled={contactDetails?.name === ""}
+        >
+          <span>Next</span>
+          <ArrowRight />
+        </StyledButton>
+      </StyledDiv>
+    </StyledDiv>
+  );
+};
+
+const Step2 = ({
+  contactName = "Dummy",
+  setProgressDetails,
+  setContactDetails,
+  contactDetails,
+}) => {
+  const theme = useTheme();
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    console.log("email", contactDetails.email);
+    if (!emailRegex.test(contactDetails.email)) setError(true);
+    else {
+      setError(false);
+    }
+  }, [contactDetails.email]);
+
+  return (
+    <StyledDiv
+      $padding={"1rem"}
+      $display={"flex"}
+      $flexDirection={"column"}
+      $gap={"20px"}
+    >
+      <StyledDiv $display={"flex"} $flexDirection={"column"} $gap={"10px"}>
+        <StyledText
+          as="label"
+          htmlFor="message"
+          $display="block"
+          $fontSize="1.6rem"
+          $fontWeight="600"
+          $color={theme.colors.text.textGrayLight}
+        >
+          {`What's your email address, ${contactName}`}
+        </StyledText>
+        <StyledText
+          as="label"
+          htmlFor="message"
+          $display="block"
+          $margin="0 0 0.5rem 0"
+          $fontSize="0.875rem"
+          $fontWeight="500"
+          $color={theme.colors.text.textGrayLight}
+        >
+          I will use this to get back to you.
+        </StyledText>
+      </StyledDiv>
+
+      <StyledInput
+        $inputColor={theme.colors.text.textBlack}
+        $inputBackground={theme.colors.white.default}
+        $inputBorder={error ? theme.colors.red.default : ""}
+        value={contactDetails?.email}
+        onChange={(e) => {
+          const { value } = e.target;
+          setContactDetails((prevState) => {
+            return {
+              ...prevState,
+              email: value,
+            };
+          });
+        }}
+        width={"100%"}
+        id="email"
+        placeholder="JaneDoe@gmail.com"
+      />
+      {error && (
+        <StyledText
+          as="label"
+          htmlFor="message"
+          $display="block"
+          $fontSize="0.875rem"
+          $fontWeight="500"
+          $color={theme.colors.red.default}
+        >
+          Please enter a valid email
+        </StyledText>
+      )}
+
+      <StyledDiv $maxWidth={"50%"} $display={"flex"} $gap={"10px"}>
+        <StyledButton
+          $bgColor={theme.colors.white.default}
+          $border={`1px solid ${theme.colors.text.textGrayDark}`}
+          $color={theme.colors.text.textGrayDark}
+          $padding="0.5rem 1rem"
+          $borderRadius="10px"
+          $fontWeight="600"
+          $fontSize="1rem"
+          onClick={() => {
+            setProgressDetails((prevState) => {
+              return {
+                ...prevState,
+                step: 1,
+                progress: 25,
+              };
+            });
+          }}
+        >
+          <span>Back</span>
+        </StyledButton>
+
+        <StyledButton
+          as="button"
+          type="submit"
+          $bgColor={theme.colors.background.mainBackground}
+          $border={`1px solid ${theme.colors.white.default}`}
+          $color={theme.colors.white.default}
+          $padding="0.5rem 1rem"
+          $borderRadius="10px"
+          $fontWeight="600"
+          $fontSize="1rem"
+          onClick={() => {
+            setProgressDetails((prevState) => {
+              return {
+                ...prevState,
+                step: 3,
+                progress: 75,
+              };
+            });
+          }}
+          disabled={contactDetails?.email === "" ? true : error}
+        >
+          <span>Next</span>
+          <ArrowRight />
+        </StyledButton>
+      </StyledDiv>
+    </StyledDiv>
+  );
+};
+
+const Step3 = ({ setProgressDetails, setContactDetails, contactDetails }) => {
+  const theme = useTheme();
+  return (
+    <StyledDiv
+      $padding={"1rem"}
+      $display={"flex"}
+      $flexDirection={"column"}
+      $gap={"20px"}
+    >
+      <StyledDiv $display={"flex"} $flexDirection={"column"} $gap={"10px"}>
+        <StyledText
+          as="label"
+          htmlFor="message"
+          $display="block"
+          $fontSize="1.6rem"
+          $fontWeight="600"
+          $color={theme.colors.text.textGrayLight}
+        >
+          {`How can I help you ? `}
+        </StyledText>
+        <StyledText
+          as="label"
+          htmlFor="message"
+          $display="block"
+          $margin="0 0 0.5rem 0"
+          $fontSize="0.875rem"
+          $fontWeight="500"
+          $color={theme.colors.text.textGrayLight}
+        >
+          Let me know whats on your mind.
+        </StyledText>
+      </StyledDiv>
+
+      <StyledDiv $display={"flex"} $flexDirection={"column"} $gap={"10px"}>
+        <StyledTextArea
+          id={"message"}
+          value={contactDetails?.message}
+          onChange={(e) => {
+            const { value } = e.target;
+            setContactDetails((prevState) => {
+              return {
+                ...prevState,
+                message: value,
+              };
+            });
+          }}
+          $inputColor={theme.colors.text.textBlack}
+          $inputBackground={theme.colors.white.default}
+          placeholder="Yourr message here..."
+        />
+        <StyledText
+          $textAlign="right"
+          as="label"
+          htmlFor="message"
+          $display="block"
+          $margin="0 0 0.5rem 0"
+          $fontSize="0.875rem"
+          $fontWeight="500"
+          $color={theme.colors.text.textGrayLight}
+          $opacity={0.4}
+        >
+          Min 50 Char and Max 150 Char
+        </StyledText>
+      </StyledDiv>
+
+      <StyledDiv $maxWidth={"50%"} $display={"flex"} $gap={"10px"}>
+        <StyledButton
+          $bgColor={theme.colors.white.default}
+          $border={`1px solid ${theme.colors.text.textGrayDark}`}
+          $color={theme.colors.text.textGrayDark}
+          $padding="0.5rem 1rem"
+          $borderRadius="10px"
+          $fontWeight="600"
+          $fontSize="1rem"
+          onClick={() => {
+            setProgressDetails((prevState) => {
+              return {
+                ...prevState,
+                step: 2,
+                progress: 50,
+              };
+            });
+          }}
+        >
+          <span>Back</span>
+        </StyledButton>
+
+        <StyledButton
+          as="button"
+          type="submit"
+          $bgColor={theme.colors.background.mainBackground}
+          $border={`1px solid ${theme.colors.white.default}`}
+          $color={theme.colors.white.default}
+          $padding="0.5rem 1rem"
+          $borderRadius="10px"
+          $fontWeight="600"
+          $fontSize="1rem"
+          onClick={() => {
+            setProgressDetails((prevState) => {
+              return {
+                ...prevState,
+                step: 4,
+                progress: 100,
+              };
+            });
+          }}
+          disabled={contactDetails?.message.length < 51}
+        >
+          <span>submit</span>
+        </StyledButton>
+      </StyledDiv>
+    </StyledDiv>
+  );
+};

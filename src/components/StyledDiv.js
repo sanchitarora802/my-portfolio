@@ -12,6 +12,7 @@ const StyledDiv = styled.div`
   height: ${(props) => props.$height};
   min-height: ${(props) => props.$minHeight};
   max-width: ${(props) => props.$maxWidth};
+  max-height: ${(props) => props.$maxHeight};
   min-width: ${(props) => props.$minWidth};
   padding: ${(props) => props.$padding};
   margin: ${(props) => props.$margin};

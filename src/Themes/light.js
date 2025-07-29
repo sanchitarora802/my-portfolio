@@ -9,6 +9,7 @@ const lightTheme = {
       textGrayDark: "#9CA3AF",
       textGrayLigh: "#D1D5DB",
       textCyan: "#67E8F9",
+      textBlack: "#000000",
     },
 
     fonts: {
@@ -16,6 +17,9 @@ const lightTheme = {
     },
     white: {
       default: "#FFFFFF",
+    },
+    red: {
+      default: "#C9341C",
     },
     border: {
       normal: "rgba(255, 255, 255)",

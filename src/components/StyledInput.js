@@ -9,24 +9,26 @@ const Input = styled.input`
   width: 100%;
   padding: 0.75rem 1rem;
   padding-right: ${(props) => (props.hasRightElement ? "2.5rem" : "1rem")};
-  border: 1px solid ${(props) => props.theme.colors.border.normal};
+  border: 1px solid
+    ${(props) => props.$inputBorder || props.theme.colors.border.PillBorder};
   border-radius: 0.5rem;
   font-size: 1rem;
-  color: ${(props) => props.theme.colors.white.default};
-  background: ${(props) => props.theme.colors.background.mainBackground};
+  color: ${(props) => props.$inputColor || props.theme.colors.white.default};
+  background: ${(props) =>
+    props.$inputBackground || props.theme.colors.text.textGrayLigh};
   outline: none;
   transition: border-color 0.2s;
 
   &:focus {
-    border-color: ${(props) => props.theme.colors.text.textCyan};
+    border-color: ${(props) => props.theme.colors.text.textGrayLigh};
   }
 `;
 
-const StyledInput = ({ label, rightElement, ...props }) => {
+const StyledInput = ({ label, rightElement, width, ...props }) => {
   const theme = useTheme();
   return (
     <StyledDiv
-      $width="100%"
+      $width={width}
       $position="relative"
       style={{ fontFamily: "sans-serif" }}
     >

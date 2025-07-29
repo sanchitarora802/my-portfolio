@@ -21,8 +21,9 @@ const Logo = styled.a`
   text-decoration: none;
 `;
 
-const Header = () => {
+const Header = ({ onClick }) => {
   const theme = useTheme();
+
   return (
     <HeaderWrapper>
       <Logo href="#">Your Name</Logo>
@@ -35,8 +36,9 @@ const Header = () => {
         $fontSize={"0.875rem"}
         $fontWeight={500}
         $hoverBackground={theme.colors.hover}
+        onClick={onClick}
       >
-        Contact
+        Get in touch
       </StyledButton>
     </HeaderWrapper>
   );

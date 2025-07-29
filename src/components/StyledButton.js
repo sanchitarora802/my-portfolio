@@ -18,6 +18,10 @@ const StyledButton = styled.a`
   &:hover {
     background: ${({ $hoverBackground }) => $hoverBackground};
   }
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.2;
+  }
 `;
 
 export default StyledButton;

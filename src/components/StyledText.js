@@ -11,6 +11,7 @@ const StyledText = styled.span`
   text-transform: ${(props) => props.$textTransform || "none"};
   text-align: ${(props) => props.$textAlign || "left"};
   display: ${(props) => props.$display || "inline"};
+  opacity: ${(props) => props.$opacity || 1};
 `;
 
 export default StyledText;
