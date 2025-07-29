@@ -139,7 +139,7 @@ const Step1 = ({ setProgressDetails, setContactDetails, contactDetails }) => {
           $fontWeight="600"
           $color={theme.colors.text.textBlack}
         >
-          Let's start with your name.
+          {`Let's start with your name.`}
         </StyledText>
         <StyledText
           as="label"
@@ -150,7 +150,7 @@ const Step1 = ({ setProgressDetails, setContactDetails, contactDetails }) => {
           $fontWeight="500"
           $color={theme.colors.text.textGrayLight}
         >
-          It's great to meet you!!
+          {`It's great to meet you!!`}
         </StyledText>
       </StyledDiv>
       <StyledInput
@@ -211,7 +211,6 @@ const Step2 = ({
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    console.log("email", contactDetails.email);
     if (!emailRegex.test(contactDetails.email)) setError(true);
     else {
       setError(false);
