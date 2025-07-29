@@ -8,6 +8,8 @@ import Head from "next/head";
 import { useState } from "react";
 import ContactForm from "@components/ContactForm";
 import ClickAwayListener from "react-advanced-click-away";
+import StyledText from "@components/StyledText";
+import { useTheme } from "styled-components";
 
 // const ScrollContainer = styled.div`
 //   height: 100vh;
@@ -17,6 +19,7 @@ import ClickAwayListener from "react-advanced-click-away";
 
 export default function HomePage() {
   const [showForm, setShowForm] = useState(false);
+  const theme = useTheme();
   return (
     <div>
       <Head>
@@ -79,6 +82,27 @@ export default function HomePage() {
         $scrollSnapAllign={"start"}
       >
         <Projects />
+      </StyledDiv>
+
+      <StyledDiv
+        $padding={"1rem"}
+        $display={"flex"}
+        $justifyContent={"center"}
+        $alignItems={"center"}
+        $position={"relative"}
+        $scrollSnapAllign={"start"}
+      >
+        <StyledText
+          as="label"
+          htmlFor="message"
+          $display="block"
+          $margin="0 0 0.5rem 0"
+          $fontSize="1.3rem"
+          $fontWeight="500"
+          $color={theme.colors.white.default}
+        >
+          © 2025 SanchitArora. For the ❤️ of Development.
+        </StyledText>
       </StyledDiv>
 
       {/* </ScrollContainer> */}
