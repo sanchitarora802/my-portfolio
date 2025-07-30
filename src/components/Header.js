@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
 import styled, { useTheme } from "styled-components";
 import StyledButton from "./StyledButton";
@@ -38,7 +39,7 @@ const Header = ({}) => {
       if (typeof document !== "undefined") {
         const scrollY = window.scrollY;
         const pageHeight =
-          document.documentElement.scrollHeight - window.innerHeight;
+          document?.documentElement?.scrollHeight - window.innerHeight;
         const scrolledPercent = (scrollY / pageHeight) * 100;
         if (scrolledPercent < 10) {
           setIsAtTop(true);

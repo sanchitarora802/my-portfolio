@@ -1,3 +1,5 @@
+"use client";
+
 import Header from "@components/Header";
 import Background from "@components/Background";
 import PortfolioCard from "@components/PortfolioCard";
