@@ -5,9 +5,6 @@ import StyledDiv from "@components/StyledDiv";
 import Experience from "@components/Experience";
 import Projects from "@components/Projects";
 import Head from "next/head";
-import { useState } from "react";
-import ContactForm from "@components/ContactForm";
-import ClickAwayListener from "react-advanced-click-away";
 import StyledText from "@components/StyledText";
 import { useTheme } from "styled-components";
 

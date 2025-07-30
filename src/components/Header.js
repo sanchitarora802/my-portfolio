@@ -35,15 +35,17 @@ const Header = ({}) => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollY = window.scrollY;
-      const pageHeight =
-        document.documentElement.scrollHeight - window.innerHeight;
-      const scrolledPercent = (scrollY / pageHeight) * 100;
-      if (scrolledPercent < 10) {
-        setIsAtTop(true);
-        setShowForm(false);
-      } else {
-        setIsAtTop(false);
+      if (typeof document !== "undefined") {
+        const scrollY = window.scrollY;
+        const pageHeight =
+          document.documentElement.scrollHeight - window.innerHeight;
+        const scrolledPercent = (scrollY / pageHeight) * 100;
+        if (scrolledPercent < 10) {
+          setIsAtTop(true);
+          setShowForm(false);
+        } else {
+          setIsAtTop(false);
+        }
       }
     };
 
