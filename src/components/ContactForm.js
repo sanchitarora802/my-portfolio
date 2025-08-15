@@ -11,6 +11,7 @@ import { Line } from "@rc-component/progress";
 
 const ContactForm = ({}) => {
   const theme = useTheme();
+  const [error, setError] = useState(false);
   const [progressDetails, setProgressDetails] = useState({
     step: 1,
     progress: 25,
@@ -20,6 +21,35 @@ const ContactForm = ({}) => {
     email: "",
     message: "",
   });
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e) => {
+    setLoading(true);
+    e.preventDefault();
+
+    const response = await fetch("/api/send-email", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: contactDetails.name,
+        email: contactDetails.email,
+        message: contactDetails.message,
+      }),
+    });
+
+    if (response.ok) {
+      setLoading(false);
+      setError(false);
+      setContactDetails({ name: "", email: "", message: "" });
+      setProgressDetails({ ...progressDetails, step: 4, progress: 100 });
+    } else {
+      setLoading(false);
+      setError(true);
+      setProgressDetails({ ...progressDetails, step: 3, progress: 75 });
+    }
+  };
 
   return (
     <StyledDiv
@@ -55,6 +85,7 @@ const ContactForm = ({}) => {
           setProgressDetails={setProgressDetails}
           setContactDetails={setContactDetails}
           contactDetails={contactDetails}
+          setApiError={setError}
         />
       )}
       {progressDetails.step === 3 && (
@@ -62,6 +93,10 @@ const ContactForm = ({}) => {
           setProgressDetails={setProgressDetails}
           setContactDetails={setContactDetails}
           contactDetails={contactDetails}
+          handleSubmit={handleSubmit}
+          error={error}
+          setApiError={setError}
+          loading={loading}
         />
       )}
       {progressDetails.step === 4 && (
@@ -201,7 +236,7 @@ const Step1 = ({ setProgressDetails, setContactDetails, contactDetails }) => {
 };
 
 const Step2 = ({
-  contactName = "Dummy",
+  setApiError,
   setProgressDetails,
   setContactDetails,
   contactDetails,
@@ -233,7 +268,7 @@ const Step2 = ({
           $fontWeight="600"
           $color={theme.colors.text.textGrayLight}
         >
-          {`What's your email address, ${contactName}`}
+          {`What's your email address, ${contactDetails.name || "Dummy"}`}
         </StyledText>
         <StyledText
           as="label"
@@ -289,6 +324,7 @@ const Step2 = ({
           $fontWeight="600"
           $fontSize="1rem"
           onClick={() => {
+            setApiError(false);
             setProgressDetails((prevState) => {
               return {
                 ...prevState,
@@ -330,7 +366,15 @@ const Step2 = ({
   );
 };
 
-const Step3 = ({ setProgressDetails, setContactDetails, contactDetails }) => {
+const Step3 = ({
+  error,
+  handleSubmit,
+  setProgressDetails,
+  setContactDetails,
+  contactDetails,
+  setApiError,
+  loading,
+}) => {
   const theme = useTheme();
   return (
     <StyledDiv
@@ -405,6 +449,7 @@ const Step3 = ({ setProgressDetails, setContactDetails, contactDetails }) => {
           $fontWeight="600"
           $fontSize="1rem"
           onClick={() => {
+            setApiError(false);
             setProgressDetails((prevState) => {
               return {
                 ...prevState,
@@ -427,20 +472,27 @@ const Step3 = ({ setProgressDetails, setContactDetails, contactDetails }) => {
           $borderRadius="10px"
           $fontWeight="600"
           $fontSize="1rem"
-          onClick={() => {
-            setProgressDetails((prevState) => {
-              return {
-                ...prevState,
-                step: 4,
-                progress: 100,
-              };
-            });
+          onClick={(e) => {
+            handleSubmit(e);
           }}
-          disabled={contactDetails?.message.length < 51}
+          disabled={contactDetails?.message.length < 51 || loading}
         >
           <span>submit</span>
         </StyledButton>
       </StyledDiv>
+      {error && (
+        <StyledText
+          as="label"
+          $display="block"
+          $margin="0 0 0.5rem 0"
+          $fontSize="0.9rem"
+          $fontWeight="500"
+          $color={theme.colors.red.default}
+          $opacity={error ? 1 : 0.4}
+        >
+          Oops! Something went wrong. Please try again later.
+        </StyledText>
+      )}
     </StyledDiv>
   );
 };
