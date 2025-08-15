@@ -6,7 +6,7 @@ export const FloatingElement = styled.div`
   border-radius: 50%;
   animation: floatUpDown 6s ease-in-out infinite;
   z-index: 1;
-  opacity: 0.1;
+  opacity: ${({ $opacity }) => $opacity || "0.1"};
   width: ${({ $width }) => $width || "100px"};
   height: ${({ $height }) => $height || "100px"};
   top: ${({ $top }) => $top || "auto"};

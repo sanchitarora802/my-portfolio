@@ -11,7 +11,7 @@ const HeaderWrapper = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: ${({ isAtTop, theme }) => (isAtTop ? "transparent" : "#99B2FF")};
+  background: ${({ isAtTop, theme }) => (isAtTop ? "transparent" : "#D9D7D7")};
   backdrop-filter: blur(16px);
   padding: 1rem;
   width: 100%;

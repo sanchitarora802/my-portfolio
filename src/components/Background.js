@@ -10,7 +10,7 @@ const BackgroundWrapper = styled.div`
   right: 0;
   bottom: 0;
   z-index: 0;
-  background: linear-gradient(135deg, hsl(210, 80%, 45%), hsl(240, 70%, 35%));
+  /* background: linear-gradient(135deg, hsl(210, 80%, 45%), hsl(240, 70%, 35%)); */
 `;
 
 const Background = () => {
@@ -19,13 +19,14 @@ const Background = () => {
   return (
     <BackgroundWrapper>
       <FloatingElement
-        $bgColor={theme.colors.border.normal}
+        $bgColor={"#D9D7D7"}
         $width="150px"
         $height="150px"
         $top="10%"
         $left="15%"
         $animationDelay="0s"
         $animationDuration="9s"
+        $opacity="0.3"
       />
       <FloatingElement
         $bgColor={theme.colors.border.normal}
@@ -44,6 +45,7 @@ const Background = () => {
         $right="15%"
         $animationDelay="1s"
         $animationDuration="8s"
+        $opacity="0.3"
       />
     </BackgroundWrapper>
   );
