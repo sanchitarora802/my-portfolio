@@ -9,6 +9,7 @@ import Projects from "@components/Projects";
 import Head from "next/head";
 import StyledText from "@components/StyledText";
 import { useTheme } from "styled-components";
+import GoToTop from "@components/GoToTop";
 
 // const ScrollContainer = styled.div`
 //   height: 100vh;
@@ -28,6 +29,7 @@ export default function HomePage() {
       </Head>
       <Background />
       <Header />
+      <GoToTop />
 
       {/* <ScrollContainer> */}
       <StyledDiv
