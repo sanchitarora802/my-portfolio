@@ -1,9 +1,8 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled, { useTheme } from "styled-components";
 import StyledButton from "./StyledButton";
-import ClickAwayListener from "react-advanced-click-away";
 import ContactForm from "./ContactForm";
 import StyledDiv from "./StyledDiv";
 
@@ -34,9 +33,12 @@ const Header = ({}) => {
   const [showForm, setShowForm] = useState(false);
   const theme = useTheme();
 
+  // Refs for both the form container AND the button
+  const contactForm = useRef(null);
+  const contactButton = useRef(null); // <-- 1. New ref for the button
+
   useEffect(() => {
     if (typeof window === "undefined") return;
-
     const handleScroll = () => {
       const scrollY = window.scrollY;
       const pageHeight =
@@ -49,14 +51,34 @@ const Header = ({}) => {
         setIsAtTop(false);
       }
     };
-
-    // Add the event listener when the component mounts
     window.addEventListener("scroll", handleScroll);
-
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      // <-- 3. Updated logic
+      // Close the form if the click is NOT inside the form AND NOT on the button
+      if (
+        contactForm.current &&
+        !contactForm.current.contains(event.target) &&
+        contactButton.current &&
+        !contactButton.current.contains(event.target)
+      ) {
+        setShowForm(false);
+      }
+    };
+
+    if (showForm) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showForm]);
 
   return (
     <HeaderWrapper isAtTop={isAtTop}>
@@ -64,6 +86,7 @@ const Header = ({}) => {
         Your Name
       </Logo>
       <StyledButton
+        ref={contactButton} // <-- 1. Attach the new ref
         $bgColor={theme.colors.border.lightBorder}
         $border={
           isAtTop
@@ -78,28 +101,22 @@ const Header = ({}) => {
         $fontSize={"0.875rem"}
         $fontWeight={500}
         $hoverBackground={theme.colors.hover}
-        onClick={() => {
-          setShowForm(true);
-        }}
+        // <-- 2. Simplified toggle logic
+        onClick={() => setShowForm((prev) => !prev)}
       >
         Get in touch
       </StyledButton>
 
-      <ClickAwayListener
-        onClickAway={() => {
-          setShowForm(false);
-        }}
+      <StyledDiv
+        ref={contactForm}
+        $position={"absolute"}
+        $zIndex={9999}
+        $top={"90%"}
+        $left={"55%"}
+        $minWidth={"40%"}
       >
-        <StyledDiv
-          $position={"absolute"}
-          $zIndex={9999}
-          $top={"90%"}
-          $left={"55%"}
-          $minWidth={"40%"}
-        >
-          {showForm && <ContactForm />}
-        </StyledDiv>
-      </ClickAwayListener>
+        {showForm && <ContactForm />}
+      </StyledDiv>
     </HeaderWrapper>
   );
 };

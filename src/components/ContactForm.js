@@ -53,7 +53,7 @@ const ContactForm = ({}) => {
 
   return (
     <StyledDiv
-      $background={"#ADD0F7"}
+      $background={"#D9D7D7"}
       $border={`1px solid ${theme.colors.border.normal}`}
       $borderRadius="1rem"
       $padding={"2rem"}
