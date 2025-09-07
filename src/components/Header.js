@@ -59,8 +59,6 @@ const Header = ({}) => {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      // <-- 3. Updated logic
-      // Close the form if the click is NOT inside the form AND NOT on the button
       if (
         contactForm.current &&
         !contactForm.current.contains(event.target) &&
@@ -86,7 +84,7 @@ const Header = ({}) => {
         Your Name
       </Logo>
       <StyledButton
-        ref={contactButton} // <-- 1. Attach the new ref
+        ref={contactButton}
         $bgColor={theme.colors.border.lightBorder}
         $border={
           isAtTop
@@ -101,7 +99,6 @@ const Header = ({}) => {
         $fontSize={"0.875rem"}
         $fontWeight={500}
         $hoverBackground={theme.colors.hover}
-        // <-- 2. Simplified toggle logic
         onClick={() => setShowForm((prev) => !prev)}
       >
         Get in touch
